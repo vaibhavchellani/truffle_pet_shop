@@ -38,7 +38,7 @@ return App.initContract();
 },
 
 initContract: function() {
- $.getJSON('Adoption.json', function(data) {pets.j
+ $.getJSON('Adoption.json', function(data) {
   // Get the necessary contract artifact file and instantiate it with truffle-contract.
   var AdoptionArtifact = data;
   App.contracts.Adoption = TruffleContract(AdoptionArtifact);``
@@ -70,11 +70,11 @@ web3.eth.getAccounts(function(error, accounts) {
 
   App.contracts.Adoption.deployed().then(function(instance) {
     adoptionInstance = instance;
-
     return adoptionInstance.adopt(petId, {from: account});
   }).then(function(result) {
     return App.markAdopted();
   }).catch(function(err) {
+    console.log("petid is "+petId);
     console.log(err.message);
   });
 });
